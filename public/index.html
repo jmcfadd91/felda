@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Felda: Whistle of Eras</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="wrap">
+    <canvas id="game" width="320" height="240"></canvas>
+    <div id="touch-ui" hidden>
+      <div id="dpad">
+        <button data-act="up" id="tu">&#9650;</button>
+        <button data-act="left" id="tl">&#9664;</button>
+        <button data-act="right" id="tr">&#9654;</button>
+        <button data-act="down" id="td">&#9660;</button>
+      </div>
+      <div id="tbtns">
+        <button data-act="a" id="ta">A</button>
+        <button data-act="b" id="tb">B</button>
+        <button data-act="interact" id="tc">&#9679;</button>
+        <button data-act="pause" id="ts">&#9776;</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

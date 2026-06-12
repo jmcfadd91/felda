@@ -1,0 +1,15 @@
+{
+  "name": "felda",
+  "version": "1.0.0",
+  "description": "Felda: Whistle of Eras - a web-based 2D action-adventure game served from a Raspberry Pi",
+  "type": "module",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "license": "MIT"
+}

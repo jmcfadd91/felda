@@ -1,0 +1,63 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #0a0a12;
+  height: 100%;
+  overflow: hidden;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#wrap {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#game {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background: #000;
+}
+
+/* Touch controls (shown only after a touch event is detected) */
+#touch-ui {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+#touch-ui button {
+  pointer-events: auto;
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(20, 20, 40, 0.45);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  font-family: monospace;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#touch-ui button:active {
+  background: rgba(90, 90, 160, 0.6);
+}
+
+#dpad { position: absolute; left: 14px; bottom: 18px; width: 168px; height: 168px; }
+#tu { left: 58px; top: 0; }
+#td { left: 58px; bottom: 0; }
+#tl { left: 0; top: 58px; }
+#tr { right: 0; top: 58px; }
+#dpad button { position: absolute; border-radius: 12px; }
+
+#tbtns { position: absolute; right: 14px; bottom: 18px; width: 130px; height: 168px; }
+#ta { right: 0; bottom: 64px; background: rgba(60, 130, 60, 0.5); }
+#tb { right: 66px; bottom: 24px; background: rgba(130, 60, 60, 0.5); }
+#tc { right: 66px; bottom: 100px; }
+#ts { right: 0; bottom: 140px; width: 40px; height: 40px; border-radius: 8px; }

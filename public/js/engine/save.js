@@ -62,6 +62,13 @@ export function deserialize(data) {
   st.version = SAVE_VERSION;
   delete st.player; // runtime uses the flattened fields
   st.player = null;
+  // Migrate saves created before the spawn-point fix: the old default
+  // checkpoint (9,8) in bramblewick_home is a wall tile the player can't
+  // move out of, so anyone still on the intro never made it past it.
+  const cp = st.checkpoint;
+  if (cp && cp.map === 'bramblewick_home' && cp.x === 9 * 16 && cp.y === 8 * 16) {
+    st.checkpoint = { map: 'bramblewick_home', x: 5 * 16, y: 7 * 16 };
+  }
   return st;
 }
 

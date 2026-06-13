@@ -10,7 +10,7 @@ export function newGameState() {
     updatedAt: Date.now(),
     playtime: 0,
     heroName: 'Rin',
-    checkpoint: { map: 'bramblewick_home', x: 9 * 16, y: 8 * 16 },
+    checkpoint: { map: 'bramblewick_home', x: 5 * 16, y: 7 * 16 },
     player: null, // flattened below for the server; runtime uses top level
     heartsMax: 3,
     hearts: 3,

@@ -3,7 +3,7 @@
 
 import {
   Chest, Sign, SaveStatue, Pot, Door, FloorSwitch, CrystalSwitch,
-  EyeSwitch, Torch, PushBlock, Warp, Gate, HeartPiece,
+  EyeSwitch, Torch, PushBlock, Warp, Gate, HeartPiece, TileSwapper,
 } from '../world/puzzles.js';
 import { NPC } from './npcs.js';
 import { registerEnemies } from './enemies.js';
@@ -23,11 +23,16 @@ const TYPES = {
   warp: Warp,
   gate: Gate,
   heartpiece: HeartPiece,
+  tileswap: TileSwapper,
   npc: NPC,
 };
 
 export function registerType(name, cls) {
   TYPES[name] = cls;
+}
+
+export function knownTypes() {
+  return Object.keys(TYPES);
 }
 
 registerEnemies(registerType);

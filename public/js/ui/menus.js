@@ -2,7 +2,7 @@
 
 import { VIEW_W, VIEW_H } from '../engine/renderer.js';
 import { drawText, drawTextCentered } from './textrender.js';
-import { drawHeart } from './hud.js';
+import { drawHeart, drawItemIcon } from './hud.js';
 import { drawSprite } from '../gfx/sprites.js';
 import { COLORS as C } from '../gfx/palette.js';
 import { nextGoalText, relicCount } from '../story/flags.js';
@@ -135,54 +135,6 @@ export class PauseScene {
     if (goal.length > 44) drawText(ctx, goal.slice(44), 24, 215, '#f8f8f8');
 
     drawTextCentered(ctx, this.quitArm ? 'A: SAVE AND QUIT  UP: CANCEL' : 'ESC: RESUME   DOWN: SAVE+QUIT', VIEW_W / 2, VIEW_H - 22, this.quitArm ? '#f08080' : '#9098a0');
-  }
-}
-
-export function drawItemIcon(ctx, item, x, y) {
-  switch (item) {
-    case 'galewing':
-      ctx.fillStyle = C.cream;
-      ctx.fillRect(x + 6, y + 1, 3, 9);
-      ctx.fillRect(x + 1, y + 6, 9, 3);
-      ctx.fillStyle = C.tan;
-      ctx.fillRect(x + 6, y + 6, 3, 3);
-      break;
-    case 'bombs':
-      drawSprite(ctx, 'bomb_pickup', x + 3, y + 4);
-      break;
-    case 'grapple':
-      ctx.fillStyle = C.stoneLight;
-      ctx.fillRect(x + 2, y + 2, 6, 6);
-      ctx.fillStyle = C.gray;
-      ctx.fillRect(x + 7, y + 7, 2, 2);
-      ctx.fillRect(x + 10, y + 10, 2, 2);
-      ctx.fillStyle = C.grayDark;
-      ctx.fillRect(x + 4, y + 4, 2, 2);
-      break;
-    case 'bow':
-      ctx.fillStyle = C.brown;
-      ctx.fillRect(x + 3, y + 1, 2, 12);
-      ctx.fillStyle = C.white;
-      ctx.fillRect(x + 5, y + 2, 1, 10);
-      ctx.fillStyle = C.brown;
-      ctx.fillRect(x + 8, y + 6, 5, 2);
-      break;
-    case 'bottle':
-      ctx.fillStyle = '#a0c8f0';
-      ctx.fillRect(x + 4, y + 4, 6, 9);
-      ctx.fillStyle = C.red;
-      ctx.fillRect(x + 5, y + 8, 4, 4);
-      ctx.fillStyle = C.brown;
-      ctx.fillRect(x + 5, y + 2, 4, 2);
-      break;
-    case 'whistle':
-      ctx.fillStyle = '#b0a8f0';
-      ctx.fillRect(x + 2, y + 5, 10, 4);
-      ctx.fillRect(x + 10, y + 3, 3, 6);
-      ctx.fillStyle = '#6858b0';
-      ctx.fillRect(x + 4, y + 6, 2, 2);
-      ctx.fillRect(x + 7, y + 6, 2, 2);
-      break;
   }
 }
 

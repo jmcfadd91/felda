@@ -276,7 +276,7 @@ export const TILE_TYPES = {
   stump:     { paint: 'stump', solid: true, hookable: true },
   post:      { paint: 'post', solid: true, hookable: true },
   crackwall: { paint: 'crackwall', solid: true, bombable: true },
-  cave:      { paint: 'cave', solid: true },
+  cave:      { paint: 'cave' },
   stairs:    { paint: 'stairs' },
   carpet:    { paint: 'carpet' },
   plank:     { paint: 'plank' },

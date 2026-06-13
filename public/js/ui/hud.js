@@ -42,26 +42,6 @@ export function drawHud(ctx, play) {
   if (st.equippedB === 'bow') drawText(ctx, String(st.arrows), 214, 14, '#fff');
 }
 
-const ITEM_ICONS = {
-  sword: drawSwordIcon, galewing: i('galewing_icon'), bombs: i('bomb_pickup'),
-  grapple: i('grapple_icon'), bow: i('bow_icon'), bottle: i('bottle_icon'),
-  whistle: i('whistle_icon'),
-};
-
-function i(name) {
-  return (ctx, x, y) => {
-    try { drawSprite(ctx, name, x, y); } catch { /* icon art not loaded yet */ }
-  };
-}
-
-function drawSwordIcon(ctx, x, y) {
-  ctx.fillStyle = C.white;
-  ctx.fillRect(x + 5, y + 1, 2, 8);
-  ctx.fillStyle = C.yellow;
-  ctx.fillRect(x + 3, y + 9, 6, 2);
-  ctx.fillRect(x + 5, y + 11, 2, 2);
-}
-
 function drawItemBox(ctx, x, y, label, item, st) {
   ctx.fillStyle = '#2a2a3a';
   ctx.fillRect(x, y, 20, 20);
@@ -71,7 +51,63 @@ function drawItemBox(ctx, x, y, label, item, st) {
   ctx.fillRect(x + 19, y, 1, 20);
   ctx.fillRect(x, y + 19, 20, 1);
   drawText(ctx, label, x + 14, y + 1, '#9098a0');
-  if (item && ITEM_ICONS[item]) ITEM_ICONS[item](ctx, x + 3, y + 5);
+  if (item) drawItemIcon(ctx, item, x + 3, y + 5);
+}
+
+// Procedural item icons (13x13 box), shared with the pause menu.
+export function drawItemIcon(ctx, item, x, y) {
+  switch (item) {
+    case 'sword':
+      ctx.fillStyle = C.white;
+      ctx.fillRect(x + 5, y + 1, 2, 8);
+      ctx.fillStyle = C.yellow;
+      ctx.fillRect(x + 3, y + 9, 6, 2);
+      ctx.fillRect(x + 5, y + 11, 2, 2);
+      break;
+    case 'galewing':
+      ctx.fillStyle = C.cream;
+      ctx.fillRect(x + 6, y + 1, 3, 9);
+      ctx.fillRect(x + 1, y + 6, 9, 3);
+      ctx.fillStyle = C.tan;
+      ctx.fillRect(x + 6, y + 6, 3, 3);
+      break;
+    case 'bombs':
+      drawSprite(ctx, 'bomb_pickup', x + 3, y + 4);
+      break;
+    case 'grapple':
+      ctx.fillStyle = C.stoneLight;
+      ctx.fillRect(x + 2, y + 2, 6, 6);
+      ctx.fillStyle = C.gray;
+      ctx.fillRect(x + 7, y + 7, 2, 2);
+      ctx.fillRect(x + 10, y + 10, 2, 2);
+      ctx.fillStyle = C.grayDark;
+      ctx.fillRect(x + 4, y + 4, 2, 2);
+      break;
+    case 'bow':
+      ctx.fillStyle = C.brown;
+      ctx.fillRect(x + 3, y + 1, 2, 12);
+      ctx.fillStyle = C.white;
+      ctx.fillRect(x + 5, y + 2, 1, 10);
+      ctx.fillStyle = C.brown;
+      ctx.fillRect(x + 8, y + 6, 5, 2);
+      break;
+    case 'bottle':
+      ctx.fillStyle = '#a0c8f0';
+      ctx.fillRect(x + 4, y + 4, 6, 9);
+      ctx.fillStyle = C.red;
+      ctx.fillRect(x + 5, y + 8, 4, 4);
+      ctx.fillStyle = C.brown;
+      ctx.fillRect(x + 5, y + 2, 4, 2);
+      break;
+    case 'whistle':
+      ctx.fillStyle = '#b0a8f0';
+      ctx.fillRect(x + 2, y + 5, 10, 4);
+      ctx.fillRect(x + 10, y + 3, 3, 6);
+      ctx.fillStyle = '#6858b0';
+      ctx.fillRect(x + 4, y + 6, 2, 2);
+      ctx.fillRect(x + 7, y + 6, 2, 2);
+      break;
+  }
 }
 
 export function drawHeart(ctx, x, y, kind) {

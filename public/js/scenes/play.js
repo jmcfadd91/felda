@@ -73,7 +73,9 @@ export class PlayScene {
       this.banner = 110;
       this.bannerText = def.name;
     }
-    def.onEnter?.(this);
+    // onEnter hooks (intro text, boss autosaves) fire after the fade-in so
+    // dialogs never open over a black screen
+    this._onEnterPending = def.onEnter || null;
   }
 
   duskActive() { return this.state.duskfall && this.mapDef?.outdoor; }
@@ -421,6 +423,11 @@ export class PlayScene {
       } else if (this.fade <= 0) {
         this.fade = 0;
         this.fadeDir = 0;
+        if (this._onEnterPending) {
+          const fn = this._onEnterPending;
+          this._onEnterPending = null;
+          fn(this);
+        }
       } else if (this.fade >= 30 && !this.pendingMap) {
         this.fade = 30;
         this.fadeDir = 0;

@@ -472,6 +472,33 @@ export class Gate extends Entity {
   }
 }
 
+// ---------------- Tile swapper (channel -> terrain change) ----------------
+// Rewrites listed tiles when its channel activates: water drains to bridge,
+// lava cools to stone, etc. Used for the Sunken Sanctum water puzzles.
+export class TileSwapper extends Entity {
+  constructor(def) {
+    super(def.x * TILE, def.y * TILE, 2, 2);
+    this.channel = def.channel;
+    this.tiles = def.tiles || []; // [[tx, ty], ...]
+    this.to = def.to || '=';
+    this.applied = false;
+    this.invisible = true;
+    this.canCross = true;
+  }
+
+  update(play) {
+    if (this.applied || !play.channelActive(this.channel)) return;
+    this.applied = true;
+    for (const [tx, ty] of this.tiles) {
+      play.map.setTile(tx, ty, this.to);
+      play.particles.spawn('splash', tx * TILE + 8, ty * TILE + 8, 4);
+    }
+    sfx('secret');
+  }
+
+  draw() { /* invisible */ }
+}
+
 // ---------------- Heart piece ----------------
 export class HeartPiece extends Entity {
   constructor(def) {

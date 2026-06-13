@@ -74,6 +74,16 @@ export class Galewing extends Entity {
 
   update(play) {
     this.spinT++;
+    // flame relay: passing a lit torch ignites the Galewing, which can then
+    // light unlit torches (the Verdant Hollow dark rooms depend on this)
+    for (const e of play.entities) {
+      if (!e.isTorch || e.dead || !aabbOverlap(this.box, e.box)) continue;
+      if (e.lit) this.flaming = true;
+      else if (this.flaming) e.light(play);
+    }
+    if (this.flaming && this.spinT % 4 === 0) {
+      play.particles.spawn('ember', this.cx, this.cy, 1);
+    }
     if (!this.returning) {
       this.x += this.vx;
       this.y += this.vy;

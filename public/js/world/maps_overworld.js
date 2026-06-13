@@ -39,7 +39,7 @@ defineMap({
   },
   entities: [
     { type: 'warp', x: 5, y: 5, to: { map: 'bramblewick_home', x: 5, y: 7 }, kind: 'door' },
-    { type: 'warp', x: 23, y: 5, to: { map: 'bramblewick_elder', x: 5, y: 7 }, kind: 'door' },
+    { type: 'warp', x: 24, y: 5, to: { map: 'bramblewick_elder', x: 5, y: 7 }, kind: 'door' },
     { type: 'warp', x: 8, y: 15, to: { map: 'bramblewick_hut1', x: 5, y: 7 }, kind: 'door' },
     { type: 'warp', x: 17, y: 15, to: { map: 'bramblewick_hut2', x: 5, y: 7 }, kind: 'door' },
     { type: 'sign', x: 16, y: 8, text: 'BRAMBLEWICK VILLAGE. North: the old shrine. West: the deep glade. East: Heartfield and all the world.' },
@@ -256,7 +256,7 @@ defineMap({
     '####.####',
   ],
   entities: [
-    { type: 'warp', x: 4, y: 6, to: { map: 'heartfield', x: 4, y: 15 }, kind: 'stairs' },
+    { type: 'warp', x: 4, y: 6, to: { map: 'heartfield', x: 4, y: 14 }, kind: 'stairs' },
     { type: 'heartpiece', id: 'hp_heartcave', x: 4, y: 3 },
     { type: 'pot', x: 1, y: 1 },
     { type: 'pot', x: 7, y: 1 },

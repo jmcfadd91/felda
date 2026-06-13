@@ -511,11 +511,14 @@ export class PlayScene {
     const p = this.player;
     const ex = this.map.exits;
     if (!ex || this.pendingMap) return;
-    const margin = 1;
-    if (p.x < -margin && ex.west) this._edgeWarp(ex.west, 'west');
-    else if (p.x + p.w > this.map.pixelW + margin && ex.east) this._edgeWarp(ex.east, 'east');
-    else if (p.y < -margin && ex.north) this._edgeWarp(ex.north, 'north');
-    else if (p.y + p.h > this.map.pixelH + margin && ex.south) this._edgeWarp(ex.south, 'south');
+    // Collision treats out-of-bounds tiles as solid, so the player can never
+    // actually overflow the map bounds - they stop a couple px short. Trigger
+    // exits on approach instead of overflow.
+    const margin = 2;
+    if (p.x < margin && ex.west) this._edgeWarp(ex.west, 'west');
+    else if (p.x + p.w > this.map.pixelW - margin && ex.east) this._edgeWarp(ex.east, 'east');
+    else if (p.y < margin && ex.north) this._edgeWarp(ex.north, 'north');
+    else if (p.y + p.h > this.map.pixelH - margin && ex.south) this._edgeWarp(ex.south, 'south');
     // clamp if no exit
     p.x = Math.max(-2, Math.min(p.x, this.map.pixelW - p.w + 2));
     p.y = Math.max(-2, Math.min(p.y, this.map.pixelH - p.h + 2));
